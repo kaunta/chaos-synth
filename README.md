@@ -19,3 +19,8 @@ I believe the columns are
 3. Y1
 4. X2
 5. Y2
+
+Double pendulum C code `solve_dpend.c` is from
+
+- <http://www.physics.usyd.edu.au/~wheat/>
+- <http://www.physics.usyd.edu.au/~wheat/dpend_html/>
