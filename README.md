@@ -9,7 +9,7 @@ $ brew install make
 To generate double pendulum data
 
 ```
-$ gmake data.csv
+$ gmake data.tsv
 ```
 
 I believe the columns are
