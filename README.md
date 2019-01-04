@@ -3,6 +3,7 @@
 To make sure you have everything installed, run
 
 ```
+$ brew install gnuplot
 $ brew install make
 ```
 
@@ -24,3 +25,9 @@ Double pendulum C code `solve_dpend.c` is from
 
 - <http://www.physics.usyd.edu.au/~wheat/>
 - <http://www.physics.usyd.edu.au/~wheat/dpend_html/>
+
+**To display an animation at the terminal:**
+
+```
+$ gmake animate
+```
