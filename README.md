@@ -4,6 +4,8 @@ To make sure you have everything installed, run
 
 ```
 $ brew install make
+$ brew install gnuplot
+$ brew install gawk
 ```
 
 To generate double pendulum data
@@ -24,3 +26,9 @@ Double pendulum C code `solve_dpend.c` is from
 
 - <http://www.physics.usyd.edu.au/~wheat/>
 - <http://www.physics.usyd.edu.au/~wheat/dpend_html/>
+
+To run the animation:
+
+```
+$ gmake animate_xy
+```
