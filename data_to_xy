@@ -1,0 +1,20 @@
+#!/usr/bin/env gawk -f
+
+BEGIN { half_pi = 1.57079632679 }
+
+{
+	time = $1
+	angle1 = $2 ; angle_vel1 = $3
+	angle2 = $4 ; angle_vel2 = $5
+
+	angle1 -= half_pi; angle2 -= half_pi
+
+	x1 = cos(angle1) ; y1 = sin(angle1)
+	x2 = cos(angle2) ; y2 = sin(angle2)
+
+	x2 += x1; y2 += y1
+}
+
+{
+	print time, x1, y1, x2, y2
+}
