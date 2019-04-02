@@ -1,3 +1,56 @@
+inlets = 2
+outlets = 5 //set outlet
+
+var meme = 0;
+
+var data = [];
+var data_index = 0;
+
+function bang()
+{
+  if (data_index >= data.length) { return }
+
+  //post(data_index, data[data_index], "\n");
+  var x1 = data[data_index][0];
+  var y1 = data[data_index][1];
+  var x2 = data[data_index][2];
+  var y2 = data[data_index][3];
+
+  outlet(0, x1);
+  outlet(1, y1);
+  outlet(2, x2);
+  outlet(3, y2);
+  outlet(4, data_index);
+
+  data_index++;
+}
+
+function list()
+{
+    var a = arrayfromargs(arguments);
+    var pitch = arguments[0];
+    var velocity = arguments[1];
+    data = [];
+    data_index = 0;
+    angle1 = -90 + 5*Math.random();
+    angle2 = -90 + 5*Math.random();
+    constant.pendulum1.length = Math.random();
+    constant.pendulum2.length = Math.random();
+    constant.pendulum1.mass = Math.random();
+    constant.pendulum2.mass = Math.random();
+    //post(JSON.stringify(constant, null, 2), "\n");
+    double_pendulum(0, 10, angle1, 0, angle2, 0, 1000,
+      function (t, th1, w1, th2, w2) {
+        var x1 = constant.pendulum1.length * Math.cos(th1);
+        var y1 = constant.pendulum1.length * Math.sin(th1);
+        var x2 = x1 + constant.pendulum2.length * Math.cos(th2);
+        var y2 = y1 + constant.pendulum2.length * Math.sin(th2);
+
+        data.push([x1, y1, x2, y2]);
+      }
+    );
+}
+
 // solve_dpend.js
 //
 // Code rewritten from Professor M.S. Wheatland's C code.
@@ -126,16 +179,3 @@ function runge_kutta(xin, yin, yout, h) {
     yout[i] = yin[i] + k1[i] / 6 + k2[i] / 3 + k3[i] / 3 + k4[i] / 6;
   }
 }
-// Test Code
-
-function record_xy(t, th1, w1, th2, w2) {
-  var x1 = constant.pendulum1.length * Math.cos(th1);
-  var y1 = constant.pendulum1.length * Math.sin(th1);
-  var x2 = x1 + constant.pendulum2.length * Math.cos(th2);
-  var y2 = y1 + constant.pendulum2.length * Math.sin(th2);
-
-  //console.log(t + '\t' + x1 + '\t' + y1 + '\t' + x2 + '\t' + y2 )
-  console.log(t + '\t' + th1 + '\t' + w1 + '\t' + th2 + '\t' + w2 )
-  //console.log([ t, x1, y1, x2, y2 ]);
-}
-double_pendulum(0, 10, 90, 0, -10, 0, 1000, record_xy);
